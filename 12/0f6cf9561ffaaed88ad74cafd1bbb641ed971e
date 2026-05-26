@@ -1,0 +1,46 @@
+README.md
+  s_aa2434a06a560e::t_3102349a6f9aec 3
+  s_aa2434a06a560e::t_2935b668ee605a 9
+  s_aa2434a06a560e::t_4ed124fc322bc1 29
+  s_aa2434a06a560e::t_169b398bde6a10 1
+  h_55b93de7ce5e50 6
+  s_aa2434a06a560e::t_2757f258acaa03 13-14
+src/langfuse_client/score.gleam
+  s_aa2434a06a560e::t_39d02570b1859c 13
+.github/workflows/test.yml
+  s_aa2434a06a560e::t_7e3ac9228534f0 41,52-96
+test/langfuse_client/score_test.gleam
+  s_aa2434a06a560e::t_72e8ce3b67c0d3 2
+.github/workflows/release.yml
+  s_aa2434a06a560e::t_354a984e8c5843 43,63
+src/langfuse_client.gleam
+  s_aa2434a06a560e::t_1fd7323d7be78b 14,19,23,45
+  s_aa2434a06a560e::t_86c7e4ccfd1fab 2,15,27,31,35,39,62,67,72,77,82,87,92,97,105,110,115,120
+  s_aa2434a06a560e::t_9f01a2da121af0 5
+  s_aa2434a06a560e::t_e75c7a41c14040 11
+test/langfuse_client/client_test.gleam
+  s_aa2434a06a560e::t_91403747a76535 1
+src/langfuse_client/client.gleam
+  s_aa2434a06a560e::t_7c531c647bfd62 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.1",
+  "base_commit_sha": "120f6cf9561ffaaed88ad74cafd1bbb641ed971e",
+  "prompts": {},
+  "humans": {
+    "h_55b93de7ce5e50": {
+      "author": "robertDurst <me@robdurst.com>"
+    }
+  },
+  "sessions": {
+    "s_aa2434a06a560e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f72bf26-8fa0-4fb9-a5d7-7bc1973626ec",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "robertDurst <me@robdurst.com>"
+    }
+  }
+}
