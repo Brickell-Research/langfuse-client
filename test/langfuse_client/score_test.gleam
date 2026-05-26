@@ -1,5 +1,5 @@
 import gleam/option
-import langfuse/score
+import langfuse_client/score
 
 const sample = "{
   \"data\": [

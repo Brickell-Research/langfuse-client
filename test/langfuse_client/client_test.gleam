@@ -1,4 +1,4 @@
-import langfuse/client
+import langfuse_client/client
 
 // ==== new ====
 // * ✅ strips a trailing slash from base_url so callers can pass either form

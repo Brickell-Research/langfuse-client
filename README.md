@@ -1,18 +1,17 @@
-# langfuse
+# langfuse_client
 
-[![Package Version](https://img.shields.io/hexpm/v/langfuse)](https://hex.pm/packages/langfuse)
+[![Package Version](https://img.shields.io/hexpm/v/langfuse_client)](https://hex.pm/packages/langfuse_client)
 [![Test](https://github.com/Brickell-Research/langfuse-client/actions/workflows/test.yml/badge.svg)](https://github.com/Brickell-Research/langfuse-client/actions/workflows/test.yml)
 
-Minimal [Langfuse](https://langfuse.com) HTTP client for Gleam — in the same
-spirit as [`datadog_client`](https://hex.pm/packages/datadog_client).
+A minimal HTTP client for Langfuse. Intentionally dual target-able (JS & Erlang) ✅
 
 ```sh
-gleam add langfuse
+gleam add langfuse_client
 ```
 
 ```gleam
-import langfuse/client
-import langfuse/score
+import langfuse_client/client
+import langfuse_client/score
 
 pub fn main() {
   let c =
@@ -27,4 +26,4 @@ pub fn main() {
 }
 ```
 
-Further documentation at <https://hexdocs.pm/langfuse>.
+Further documentation at <https://hexdocs.pm/langfuse_client>.

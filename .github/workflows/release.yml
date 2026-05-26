@@ -40,7 +40,7 @@ jobs:
         run: |
           VERSION=$(grep '^version' gleam.toml | sed 's/version = "\(.*\)"/\1/')
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "Publishing langfuse v${VERSION}"
+          echo "Publishing langfuse_client v${VERSION}"
 
       - name: Verify tag matches gleam.toml version
         env:
@@ -60,5 +60,5 @@ jobs:
           HEXPM_API_KEY: ${{ secrets.HEX_API_KEY }}
           VERSION: ${{ steps.version.outputs.version }}
         run: |
-          echo "Publishing langfuse v${VERSION} to Hex..."
+          echo "Publishing langfuse_client v${VERSION} to Hex..."
           gleam publish --yes

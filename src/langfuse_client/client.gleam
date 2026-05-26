@@ -1,17 +1,30 @@
 //// HTTP client for a Langfuse project. Holds the base URL and API key pair
 //// used to authenticate against `/api/public/*` endpoints. Domain-specific
-//// modules (e.g. `langfuse/score`) drive the actual requests via `send_get`.
+//// modules (e.g. `langfuse_client/score`) drive the actual requests via `send_get`.
+////
+//// The pure pieces (types, `new`) compile on both the Erlang and JavaScript
+//// targets; the HTTP-issuing pieces are Erlang-only because they depend on
+//// `gleam_httpc`.
 
-import gleam/bit_array
 import gleam/bool
-import gleam/dynamic/decode
-import gleam/http
-import gleam/http/request.{type Request}
-import gleam/http/response.{type Response}
-import gleam/httpc
 import gleam/json
-import gleam/result
 import gleam/string
+
+@target(erlang)
+import gleam/bit_array
+@target(erlang)
+import gleam/dynamic/decode
+@target(erlang)
+import gleam/http
+@target(erlang)
+import gleam/http/request.{type Request}
+@target(erlang)
+import gleam/http/response.{type Response}
+@target(erlang)
+import gleam/httpc
+@target(erlang)
+import gleam/result
+@target(erlang)
 import gleam/uri
 
 /// Credentials and host for a Langfuse project.
@@ -21,8 +34,9 @@ pub type Client {
 
 /// Failure modes returned by `send_get` and its callers.
 pub type Error {
-  /// Transport-level failure (DNS, TCP, TLS, etc.).
-  HttpError(httpc.HttpError)
+  /// Transport-level failure (DNS, TCP, TLS, etc.) — body is the underlying
+  /// error inspected as a string so the type stays target-agnostic.
+  HttpError(String)
   /// Langfuse returned a non-2xx status.
   BadStatus(status: Int, body: String)
   /// Could not assemble a valid request URL from `base_url <> path`.
@@ -48,9 +62,10 @@ pub fn new(
   )
 }
 
+@target(erlang)
 /// Issue an authenticated GET against `path` with the given query string
 /// pairs and decode the response. Used by sibling endpoint modules; not part
-/// of the stable public API.
+/// of the stable public API. Erlang-only — see module docs.
 @internal
 pub fn send_get(
   client: Client,
@@ -66,6 +81,7 @@ pub fn send_get(
 
 // --- Internals --------------------------------------------------------------
 
+@target(erlang)
 fn build_request(
   client: Client,
   path: String,
@@ -82,15 +98,19 @@ fn build_request(
   |> Ok
 }
 
+@target(erlang)
 fn auth_header(client: Client) -> String {
   let creds = client.public_key <> ":" <> client.secret_key
   "Basic " <> bit_array.base64_encode(bit_array.from_string(creds), True)
 }
 
+@target(erlang)
 fn send_raw(req: Request(String)) -> Result(Response(String), Error) {
-  httpc.send(req) |> result.map_error(HttpError)
+  httpc.send(req)
+  |> result.map_error(fn(e) { HttpError(string.inspect(e)) })
 }
 
+@target(erlang)
 fn decode_body(
   resp: Response(String),
   decoder: decode.Decoder(a),

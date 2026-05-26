@@ -5,9 +5,12 @@
 import gleam/dynamic/decode
 import gleam/int
 import gleam/json
-import gleam/list
 import gleam/option.{type Option}
-import langfuse/client.{type Client, type Error}
+
+@target(erlang)
+import gleam/list
+@target(erlang)
+import langfuse_client/client.{type Client, type Error}
 
 /// A score as returned by `GET /api/public/v2/scores`. Only the fields common
 /// across data types are decoded; inspect `data_type` to decide whether to
@@ -127,7 +130,9 @@ pub fn with_to_timestamp(q: Query, to: String) -> Query {
   Query(..q, to_timestamp: option.Some(to))
 }
 
-/// Fetch one page of scores from `GET /api/public/v2/scores`.
+@target(erlang)
+/// Fetch one page of scores from `GET /api/public/v2/scores`. Erlang-only —
+/// the JavaScript target lacks an HTTP transport in this library.
 pub fn list(c: Client, q: Query) -> Result(Scores, Error) {
   client.send_get(c, "/api/public/v2/scores", query_pairs(q), scores_decoder())
 }
@@ -138,6 +143,7 @@ pub fn decode(body: String) -> Result(Scores, json.DecodeError) {
   json.parse(body, scores_decoder())
 }
 
+@target(erlang)
 fn query_pairs(q: Query) -> List(#(String, String)) {
   [
     #("page", option.map(q.page, int.to_string)),
