@@ -1,0 +1,26 @@
+CLAUDE.md
+  s_aa2434a06a560e::t_1b512fa0327092 1-3
+style.md
+  s_aa2434a06a560e::t_5c8e06d8276984 1-134
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.1",
+  "base_commit_sha": "9ef659b1b3dd84a49bba49aebaa70400fb732a6a",
+  "prompts": {},
+  "humans": {
+    "h_55b93de7ce5e50": {
+      "author": "robertDurst <me@robdurst.com>"
+    }
+  },
+  "sessions": {
+    "s_aa2434a06a560e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f72bf26-8fa0-4fb9-a5d7-7bc1973626ec",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "robertDurst <me@robdurst.com>"
+    }
+  }
+}
