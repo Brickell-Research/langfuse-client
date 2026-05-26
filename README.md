@@ -1,4 +1,4 @@
-# langfuse_client
+# Langfuse Client
 
 [![Package Version](https://img.shields.io/hexpm/v/langfuse_client)](https://hex.pm/packages/langfuse_client)
 [![Test](https://github.com/Brickell-Research/langfuse-client/actions/workflows/test.yml/badge.svg)](https://github.com/Brickell-Research/langfuse-client/actions/workflows/test.yml)
