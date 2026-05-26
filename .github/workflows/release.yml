@@ -57,7 +57,7 @@ jobs:
 
       - name: Publish to Hex
         env:
-          HEXPM_API_KEY: ${{ secrets.HEXPM_API_KEY }}
+          HEXPM_API_KEY: ${{ secrets.HEX_API_KEY }}
           VERSION: ${{ steps.version.outputs.version }}
         run: |
           echo "Publishing langfuse v${VERSION} to Hex..."
