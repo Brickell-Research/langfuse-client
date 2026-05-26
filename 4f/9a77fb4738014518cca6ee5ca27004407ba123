@@ -1,0 +1,14 @@
+README.md
+  h_55b93de7ce5e50 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.1",
+  "base_commit_sha": "4f9a77fb4738014518cca6ee5ca27004407ba123",
+  "prompts": {},
+  "humans": {
+    "h_55b93de7ce5e50": {
+      "author": "robertDurst <me@robdurst.com>"
+    }
+  }
+}
