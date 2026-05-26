@@ -1,6 +1,6 @@
 name = "langfuse_client"
 version = "1.0.0"
-description = "Minimal Langfuse HTTP client for Gleam."
+description = "Minimal Langfuse HTTP client for Gleam, written in Gleam."
 licences = ["Apache-2.0"]
 repository = { type = "github", user = "Brickell-Research", repo = "langfuse-client" }
 
