@@ -1,0 +1,14 @@
+gleam.toml
+  h_55b93de7ce5e50 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.1",
+  "base_commit_sha": "cabe2a340e8dd2135f368a87176c0e13f8997081",
+  "prompts": {},
+  "humans": {
+    "h_55b93de7ce5e50": {
+      "author": "robertDurst <me@robdurst.com>"
+    }
+  }
+}
