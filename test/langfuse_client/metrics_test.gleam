@@ -44,3 +44,35 @@ pub fn score_count_query_builds_test() {
   assert q.from_timestamp == "2026-01-01T00:00:00Z"
   assert q.to_timestamp == "2026-01-02T00:00:00Z"
 }
+
+const value_sample = "{
+  \"data\": [
+    {\"name\": \"hallucination\", \"dataType\": \"NUMERIC\", \"source\": \"API\", \"avg_value\": 0.405},
+    {\"name\": \"safe\", \"dataType\": \"BOOLEAN\", \"source\": \"API\", \"avg_value\": 1}
+  ]
+}"
+
+// ==== decode_score_values ====
+// * ✅ decodes the data envelope into ScoreValueRow values
+// * ✅ accepts an integer-valued avg_value as a Float
+pub fn decode_score_values_test() {
+  let assert Ok(rows) = metrics.decode_score_values(value_sample)
+  let assert [first, second] = rows
+  assert first.name == "hallucination"
+  assert first.avg_value == 0.405
+  assert second.name == "safe"
+  assert second.data_type == "BOOLEAN"
+  assert second.avg_value == 1.0
+}
+
+// ==== score_value_query ====
+// * ✅ captures the window without requiring a view (numeric-only)
+pub fn score_value_query_builds_test() {
+  let q =
+    metrics.score_value_query(
+      from: "2026-01-01T00:00:00Z",
+      to: "2026-01-02T00:00:00Z",
+    )
+  assert q.from_timestamp == "2026-01-01T00:00:00Z"
+  assert q.to_timestamp == "2026-01-02T00:00:00Z"
+}
