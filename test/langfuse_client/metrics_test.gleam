@@ -32,17 +32,35 @@ pub fn decode_empty_sample_test() {
 }
 
 // ==== score_count_query ====
-// * ✅ captures view + window fields
+// * ✅ captures view + window + filters fields
 pub fn score_count_query_builds_test() {
   let q =
     metrics.score_count_query(
       view: metrics.ScoresCategorical,
       from: "2026-01-01T00:00:00Z",
       to: "2026-01-02T00:00:00Z",
+      filters: [],
     )
   assert q.view == metrics.ScoresCategorical
   assert q.from_timestamp == "2026-01-01T00:00:00Z"
   assert q.to_timestamp == "2026-01-02T00:00:00Z"
+  assert q.filters == []
+}
+
+// * ✅ carries the scorer_names filter through
+pub fn score_count_query_with_scorer_filter_test() {
+  let q =
+    metrics.score_count_query(
+      view: metrics.ScoresNumeric,
+      from: "2026-01-01T00:00:00Z",
+      to: "2026-01-02T00:00:00Z",
+      filters: [metrics.scorer_names(["helpfulness", "safe"])],
+    )
+  let assert [filter] = q.filters
+  let metrics.StringOptions(column:, operator:, values:) = filter
+  assert column == "name"
+  assert operator == metrics.AnyOf
+  assert values == ["helpfulness", "safe"]
 }
 
 const value_sample = "{
@@ -66,13 +84,15 @@ pub fn decode_score_values_test() {
 }
 
 // ==== score_value_query ====
-// * ✅ captures the window without requiring a view (numeric-only)
+// * ✅ captures the window + filters without requiring a view (numeric-only)
 pub fn score_value_query_builds_test() {
   let q =
     metrics.score_value_query(
       from: "2026-01-01T00:00:00Z",
       to: "2026-01-02T00:00:00Z",
+      filters: [],
     )
   assert q.from_timestamp == "2026-01-01T00:00:00Z"
   assert q.to_timestamp == "2026-01-02T00:00:00Z"
+  assert q.filters == []
 }
